@@ -1,0 +1,41 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+#ML run files
+
+mlruns/
+# Virtual environments
+.venv
+
+
+# Environment variables
+.env
+
+
+# Ignore all files in the logs directory
+logs/*
+
+# Ignore all files in the data directory
+data/*
+
+# Ignore all files in the config directory
+config/*
+
+# Ignore all files in the dist directory
+dist/*
+
+# Ignore all files in the build directory
+build/*
+
+
+# Ignore all files in the artifacts directory
+artifacts/*
+
+
+
+
