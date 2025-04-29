@@ -162,17 +162,39 @@ async def predict_form(
     type_of_meal_plan: int = Form(...),
     room_type_reserved: int = Form(...)
 ):
+    error = None
     # Validate inputs
     if arrival_month < 1 or arrival_month > 12:
-        return templates.TemplateResponse(
-            "index.html", 
-            {"request": request, "prediction": None, "error": "Arrival month must be between 1 and 12"}
-        )
+        error = "Arrival month must be between 1 and 12"
+    elif arrival_date < 1 or arrival_date > 31:
+        error = "Arrival date must be between 1 and 31"
+    elif lead_time < 0:
+        error = "Lead time cannot be negative"
+    elif no_of_special_request < 0:
+        error = "Number of special requests cannot be negative"
+    elif avg_price_per_room < 0:
+        error = "Average price per room cannot be negative"
     
-    if arrival_date < 1 or arrival_date > 31:
+    if error:
         return templates.TemplateResponse(
             "index.html", 
-            {"request": request, "prediction": None, "error": "Arrival date must be between 1 and 31"}
+            {
+                "request": request, 
+                "prediction": None, 
+                "error": error,
+                "form_data": {
+                    "lead_time": lead_time,
+                    "no_of_special_request": no_of_special_request,
+                    "avg_price_per_room": avg_price_per_room,
+                    "arrival_month": arrival_month,
+                    "arrival_date": arrival_date,
+                    "market_segment_type": market_segment_type,
+                    "no_of_week_nights": no_of_week_nights,
+                    "no_of_weekend_nights": no_of_weekend_nights,
+                    "type_of_meal_plan": type_of_meal_plan,
+                    "room_type_reserved": room_type_reserved
+                }
+            }
         )
     
     # Validate date based on month
@@ -296,6 +318,8 @@ async def custom_swagger_ui_html():
     return get_swagger_ui_html(
         openapi_url="/openapi.json",
         title=app.title + " - Swagger UI",
+        swagger_js_url="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js",
+        swagger_css_url="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css"
     )
 
 if __name__ == "__main__":

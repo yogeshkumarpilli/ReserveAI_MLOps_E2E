@@ -37,18 +37,24 @@ class ModelTraining:
             logger.info(f"Loading data from {self.test_path}")
             test_df = load_data(self.test_path)
 
+            if train_df.empty or test_df.empty:
+                raise CustomException("Empty dataset", "Train or test dataset is empty")
+
+            if "booking_status" not in train_df.columns or "booking_status" not in test_df.columns:
+                raise CustomException("Missing target column", "booking_status column not found in dataset")
+
             X_train = train_df.drop(columns=["booking_status"])
             y_train = train_df["booking_status"]
 
             X_test = test_df.drop(columns=["booking_status"])
             y_test = test_df["booking_status"]
 
-            logger.info("Data splitted sucefully for Model Training")
+            logger.info("Data splitted successfully for Model Training")
 
             return X_train,y_train,X_test,y_test
         except Exception as e:
-            logger.error(f"Error while loading data {e}")
-            raise CustomException("Failed to load data" ,  e)
+            logger.error(f"Error while loading data: {str(e)}")
+            raise CustomException("Failed to load data", str(e))
         
     def train_lgbm(self,X_train,y_train):
         try:
