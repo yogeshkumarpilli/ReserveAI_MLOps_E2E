@@ -1,0 +1,156 @@
+/* Main Styles */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Header */
+.header {
+    background-color: #1E3A8A;
+    color: white;
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-weight: 600;
+}
+
+/* Form Container */
+.form-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #1E3A8A;
+}
+
+.form-text {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+/* Prediction Container */
+.prediction-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.prediction-result {
+    font-size: 1.2rem;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.cancelled {
+    background-color: #ffebee;
+    color: #c62828;
+    border-left: 5px solid #c62828;
+}
+
+.confirmed {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-left: 5px solid #2e7d32;
+}
+
+/* API Info */
+.api-info-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.api-endpoint {
+    background-color: #e9ecef;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.code-block {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    overflow-x: auto;
+}
+
+/* Buttons */
+.btn-predict {
+    background-color: #1E3A8A;
+    border-color: #1E3A8A;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-predict:hover {
+    background-color: #152b63;
+    border-color: #152b63;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #6c757d;
+    margin-top: 30px;
+    background-color: #f1f3f5;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .form-container, 
+    .prediction-container, 
+    .api-info-container {
+        padding: 20px 15px;
+    }
+}
+
+/* Form Input Focus */
+.form-control:focus {
+    border-color: #1E3A8A;
+    box-shadow: 0 0 0 0.25rem rgba(30, 58, 138, 0.25);
+}
+
+/* Alert Styles */
+.alert {
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+/* Animation for Prediction Result */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.prediction-result {
+    animation: fadeIn 0.5s ease-out forwards;
+}

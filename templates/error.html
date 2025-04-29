@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Hotel Booking Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', path='/css/styles.css') }}" rel="stylesheet">
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 50px;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: #1E3A8A;
+            margin-bottom: 20px;
+        }
+        
+        .error-message {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .back-home {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header text-center">
+        <h1>Hotel Booking Prediction</h1>
+        <p class="mb-0">Predict the likelihood of booking cancellation</p>
+    </div>
+
+    <div class="container">
+        <div class="error-container">
+            <div class="error-code">{{ status_code }}</div>
+            <div class="error-message">{{ message }}</div>
+            <p>{{ detail }}</p>
+            <div class="back-home">
+                <a href="/" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>Hotel Booking Prediction System © 2025</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
