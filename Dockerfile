@@ -1,22 +1,27 @@
+# First, build the application in the `/app` directory.
+# See `Dockerfile` for details.
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
+ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
+
+# Disable Python downloads, because we want to use the system interpreter
+# across both images. If using a managed Python version, it needs to be
+# copied from the build image into the final image; see `standalone.Dockerfile`
+# for an example.
+ENV UV_PYTHON_DOWNLOADS=0
+
+WORKDIR /app
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --frozen --no-install-project --no-dev
+
+ADD . /app
+
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --no-dev
+
 # Use a lightweight Python image
 FROM python:slim
-
-# Set environment variables to prevent Python from writing .pyc files & Ensure Python output is not buffered
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 
-    #PATH="/root/.local/bin/:$PATH"
-
-# Set the working directory
-WORKDIR /app
-
-# The installer requires curl (and certificates) to download the release archive
-#RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
-
-# Download the latest installer
-#ADD https://astral.sh/uv/install.sh /uv-installer.sh
-
-# Run the installer then remove it
-#RUN sh /uv-installer.sh && rm /uv-installer.sh
 
 
 # Install system dependencies required by LightGBM and UV
@@ -26,13 +31,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* 
 
 
-    # Copy the application code
+# Copy the application code
 COPY . .
 
-# Install the package in editable mode
-
-RUN uv sync --locked \
-    uv build
 
 # Training the model before running the application
 
@@ -42,4 +43,4 @@ RUN uv run pipeline/training.py
 EXPOSE 8000
 
 # Command to run the app
-CMD ["python", "application.py"]
+CMD ["uv run", "application.py"]

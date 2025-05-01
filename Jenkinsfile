@@ -2,7 +2,6 @@ pipeline{
     agent any
 
     environment {
-        VENV_DIR = 'venv'
         GCP_PROJECT = "spring-hope-458014-e6"
         GCLOUD_PATH = "/var/jenkins_home/google-cloud-sdk/bin"
     }
@@ -28,8 +27,8 @@ pipeline{
                     sh '''
                     curl -LsSf https://astral.sh/uv/install.sh | sh
                     . $HOME/.local/bin/env
-                    uv venv ${VENV_DIR}
-                    . ${VENV_DIR}/bin/activate
+                    uv venv
+                    . venv/bin/activate
                     uv sync
                     uv lock
                     uv build
