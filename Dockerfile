@@ -26,11 +26,9 @@ FROM python:slim
 # Install system dependencies required by LightGBM and UV
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
-    curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
-    && curl -L --output /usr/local/bin/uv https://github.com/astral-sh/uv/releases/latest/download/uv-linux-x64 \
-    && chmod +x /usr/local/bin/uv
+    && pip install --no-cache-dir uv
 
 # Set working directory
 WORKDIR /app
