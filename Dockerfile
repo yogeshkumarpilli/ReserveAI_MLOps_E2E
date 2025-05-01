@@ -23,24 +23,26 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # Use a lightweight Python image
 FROM python:slim
 
-
 # Install system dependencies required by LightGBM and UV
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
+    curl \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* 
+    && rm -rf /var/lib/apt/lists/* \
+    && curl -L --output /usr/local/bin/uv https://github.com/astral-sh/uv/releases/latest/download/uv-linux-x64 \
+    && chmod +x /usr/local/bin/uv
 
+# Set working directory
+WORKDIR /app
 
 # Copy the application code
 COPY . .
 
-
 # Training the model before running the application
-
 RUN uv run pipeline/training.py
 
 # Expose the port that fastapi will run on
 EXPOSE 8000
 
 # Command to run the app
-CMD ["uv run", "application.py"]
+CMD ["uv", "run", "application.py"]
