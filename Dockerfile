@@ -8,6 +8,9 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 #FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS builder
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 ENV UV_PYTHON_DOWNLOADS=0
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONIOENCODING=UTF-8 \
+    PYTHONDONTWRITEBYTECODE=1
 ENV PATH="/root/.local/bin/:$PATH"
 
 WORKDIR /app
@@ -38,9 +41,10 @@ WORKDIR /app
 
 
 # Copy Python installation and virtual environment from builder
-COPY --from=builder /app /app
-COPY --from=builder /usr/local/bin/uv /usr/local/bin/uv
+# 3. Copy from builder (corrected - no circular reference)
 COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
+COPY --from=builder /usr/local/bin /usr/local/bin
+COPY --chown=appuser:appuser . .
 COPY --from=ghcr.io/astral-sh/uv:0.7.2 /uv /uvx /bin/
 COPY . .
 
