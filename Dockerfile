@@ -26,19 +26,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Set working directory
 WORKDIR /app
 
-# Copy from builder stage
-COPY . .
 
+# Copy Python installation and virtual environment from builder
+COPY --from=builder /app /app
+COPY --from=builder /usr/local/bin/uv /usr/local/bin/uv
+COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 
-
+# Expose the port that fastapi will run on
+EXPOSE 8000
 # Install application in editable mode
-RUN uv pip install -e .
+#RUN uv pip install -e .
 
 # Training the model before running the application
 RUN python pipeline/training.py
 
-# Expose the port that fastapi will run on
-EXPOSE 8000
+
 
 # Command to run the app
 CMD ["python", "application:app"]
