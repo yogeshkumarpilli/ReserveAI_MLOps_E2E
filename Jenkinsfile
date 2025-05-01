@@ -30,6 +30,8 @@ pipeline{
                     . $HOME/.local/bin/env
                     uv venv ${VENV_DIR}
                     . ${VENV_DIR}/bin/activate
+                    uv sync
+                    uv lock
                     uv build
                     '''
                 }
