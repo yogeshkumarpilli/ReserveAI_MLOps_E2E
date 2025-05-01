@@ -3,20 +3,20 @@ FROM python:slim
 
 # Set environment variables to prevent Python from writing .pyc files & Ensure Python output is not buffered
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PATH="/root/.local/bin/:$PATH"
+    PYTHONUNBUFFERED=1 
+    #PATH="/root/.local/bin/:$PATH"
 
 # Set the working directory
 WORKDIR /app
 
 # The installer requires curl (and certificates) to download the release archive
-RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
+#RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
 
 # Download the latest installer
-ADD https://astral.sh/uv/install.sh /uv-installer.sh
+#ADD https://astral.sh/uv/install.sh /uv-installer.sh
 
 # Run the installer then remove it
-RUN sh /uv-installer.sh && rm /uv-installer.sh
+#RUN sh /uv-installer.sh && rm /uv-installer.sh
 
 
 # Install system dependencies required by LightGBM and UV
