@@ -37,7 +37,9 @@ WORKDIR /app
 COPY . .
 
 # Training the model before running the application
-RUN uv run pipeline/training.py
+RUN uv sync \
+    uv build \
+    uv run pipeline/training.py
 
 # Expose the port that fastapi will run on
 EXPOSE 8000
