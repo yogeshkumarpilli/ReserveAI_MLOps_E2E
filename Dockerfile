@@ -21,8 +21,11 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 # Copy the application code
 COPY . .
 
+ENV PATH="$HOME/.local/bin:$PATH"
+
 # Install the package in editable mode using uv
-RUN /root/.cargo/bin/uv pip install --no-cache-dir -e .
+RUN uv sync
+RUN uv build
 
 # Train the model before running the application
 RUN python pipeline/training_pipeline.py
