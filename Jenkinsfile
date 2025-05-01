@@ -1,6 +1,12 @@
 pipeline{
     agent any
 
+    environment {
+        VENV_DIR = 'venv'
+        GCP_PROJECT = "mlops-new-447207"
+        GCLOUD_PATH = "/var/jenkins_home/google-cloud-sdk/bin"
+    }
+
 
     stages{
 
@@ -11,6 +17,20 @@ pipeline{
                 script{
                     echo 'Cloning Github repo to Jenkins.....................'
                     checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github_token', url: 'https://github.com/yogeshkumarpilli/ReserveAI_MLOps_E2E.git']])
+                }
+            }
+        }
+
+        stage('Setting up our Virtual Environment and Installing dependancies'){
+            steps{
+                script{
+                    echo 'Setting up our Virtual Environment and Installing dependancies............'
+                    sh '''
+                    uv venv ${VENV_DIR}
+                    . ${VENV_DIR}/bin/activate
+                    curl -LsSf https://astral.sh/uv/install.sh | sh
+                    uv build
+                    '''
                 }
             }
         }
