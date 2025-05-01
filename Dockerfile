@@ -1,5 +1,5 @@
 # Use a lightweight Python image
-FROM python:slim
+FROM python:3.12-slim
 
 # Set environment variables to prevent Python from writing .pyc files & Ensure Python output is not buffered
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -11,14 +11,18 @@ WORKDIR /app
 # Install system dependencies required by LightGBM
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
+    curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+# Install uv
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Copy the application code
 COPY . .
 
-# Install the package in editable mode
-RUN pip install --no-cache-dir -e .
+# Install the package in editable mode using uv
+RUN /root/.cargo/bin/uv pip install --no-cache-dir -e .
 
 # Train the model before running the application
 RUN python pipeline/training_pipeline.py
