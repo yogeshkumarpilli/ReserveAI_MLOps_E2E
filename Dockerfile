@@ -44,7 +44,6 @@ WORKDIR /app
 # 3. Copy from builder (corrected - no circular reference)
 COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
-COPY --chown=appuser:appuser . .
 COPY --from=ghcr.io/astral-sh/uv:0.7.2 /uv /uvx /bin/
 COPY . .
 
