@@ -27,6 +27,7 @@ pipeline{
                     echo 'Setting up our Virtual Environment and Installing dependancies............'
                     sh '''
                     curl -LsSf https://astral.sh/uv/install.sh | sh
+                    source $HOME/.local/bin/env
                     uv venv ${VENV_DIR}
                     . ${VENV_DIR}/bin/activate
                     uv build
