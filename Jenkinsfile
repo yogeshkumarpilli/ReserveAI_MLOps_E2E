@@ -29,7 +29,7 @@ pipeline{
                     curl -LsSf https://astral.sh/uv/install.sh | sh
                     . $HOME/.local/bin/env
                     uv venv
-                    . venv/bin/activate
+                    . .venv/bin/activate
                     uv sync
                     uv lock
                     uv build
