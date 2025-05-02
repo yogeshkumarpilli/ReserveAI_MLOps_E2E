@@ -16,15 +16,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install uv
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh 
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
+    && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 
-RUN source . $HOME/.local/bin/env
+ENV PATH="/root/.local/bin:${PATH}"
 
 # Copy the application code
 COPY . .
 
 # Install the package in editable mode using uv
 RUN uv venv
+
+ENV VIRTUAL_ENV=/app/.venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 RUN uv sync
 RUN uv build
 
