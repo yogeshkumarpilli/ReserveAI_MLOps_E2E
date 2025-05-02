@@ -19,11 +19,7 @@ logs/*
 # Ignore all files in the data directory
 data/*
 
-# Ignore all files in the config directory
-config/*
 
 # Ignore all files in the dist directory
 dist/*
 
-# Ignore all files in the build directory
-build/*

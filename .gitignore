@@ -20,12 +20,6 @@ mlruns/
 # Ignore all files in the logs directory
 logs/*
 
-# Ignore all files in the data directory
-data/*
-
-# Ignore all files in the config directory
-config/*
-
 # Ignore all files in the dist directory
 dist/*
 
