@@ -33,11 +33,16 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN uv sync
 RUN uv build
 
+# Debug: Verify final directory structure
+RUN echo "→ Final directory structure:" \
+    && ls -la \
+    && echo "✓ All files copied"
+
 # Train the model before running the application
-RUN python pipeline/training_pipeline.py
+RUN uv run pipeline/training.py
 
 # Expose the port that FastAPI will run on
 EXPOSE 8000
 
 # Command to run the app
-CMD ["python", "application.py"]
+CMD ["uv","run", "application.py"]
