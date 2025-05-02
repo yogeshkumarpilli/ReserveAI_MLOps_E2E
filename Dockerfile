@@ -16,22 +16,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install uv
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
+    source . $HOME/.local/bin/env
 
 # Copy the application code
 COPY . .
 
-ENV PATH="$HOME/.local/bin:$PATH"
-
 # Install the package in editable mode using uv
+RUN uv venv
 RUN uv sync
 RUN uv build
 
 # Train the model before running the application
 RUN python pipeline/training_pipeline.py
 
-# Expose the port that Flask will run on
-EXPOSE 5000
+# Expose the port that FastAPI will run on
+EXPOSE 8000
 
 # Command to run the app
 CMD ["python", "application.py"]
