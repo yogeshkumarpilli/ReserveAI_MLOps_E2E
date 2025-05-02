@@ -38,8 +38,23 @@ RUN echo "→ Final directory structure:" \
     && ls -la \
     && echo "✓ All files copied"
 
+# Add GCP credentials handling
+ARG GCP_KEY_JSON
+ENV GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-credentials.json
+
+# Create credentials file if provided
+RUN if [ -n "$GCP_KEY_JSON" ]; then \
+    echo "$GCP_KEY_JSON" > /app/gcp-credentials.json; \
+    fi
+
 # Train the model before running the application
 RUN uv run pipeline/training.py
+
+
+# For security, remove credentials after training
+RUN if [ -f /app/gcp-credentials.json ]; then \
+    rm -f /app/gcp-credentials.json; \
+    fi
 
 # Expose the port that FastAPI will run on
 EXPOSE 8000
