@@ -1,0 +1,29 @@
+# Ignore directories
+**/__pycache__
+**/.git
+**/.venv
+**/node_modules
+**/dist
+**/build
+
+# Ignore files
+*.log
+*.pyc
+*.tmp
+.env
+
+
+# Ignore all files in the logs directory
+logs/*
+
+# Ignore all files in the data directory
+data/*
+
+# Ignore all files in the config directory
+config/*
+
+# Ignore all files in the dist directory
+dist/*
+
+# Ignore all files in the build directory
+build/*
