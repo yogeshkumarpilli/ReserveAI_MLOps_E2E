@@ -37,17 +37,13 @@ pipeline{
                 }
             }
         }
-        stage('Building and Pushing Docker Image to GCR'){
-            steps{
-                withCredentials([file(credentialsId: 'gcpkey' , variable : 'GOOGLE_APPLICATION_CREDENTIALS')]){
-                    script{
+        stage('Building and Pushing Docker Image to GCR') {
+            steps {
+                withCredentials([file(credentialsId: 'gcpkey', variable: 'GOOGLE_APPLICATION_CREDENTIALS')]) {
+                    script {
                         echo 'Building and Pushing Docker Image to GCR.............'
-                        // Read the credential file content
-                        def gcp_key_content = sh(script: "cat ${GOOGLE_APPLICATION_CREDENTIALS}", returnStdout: true).trim()
                         
-                        // Escape the JSON content for safe passing to Docker build
-                        def escaped_key = gcp_key_content.replaceAll('"', '\\\\"').replaceAll('\n', '\\\\n')
-                        
+                        // Setup gcloud authentication first
                         sh '''
                             export PATH=$PATH:${GCLOUD_PATH}
                             gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
@@ -55,11 +51,22 @@ pipeline{
                             gcloud auth configure-docker --quiet
                         '''
                         
-                        // Build with the GCP key as a build argument
-                        sh '''
-                            docker build --build-arg GCP_KEY_JSON="${escaped_key}" -t gcr.io/${GCP_PROJECT}/mlops-project:latest .
+                        // Create a temporary file with credentials content to avoid escaping issues
+                        sh "cp ${GOOGLE_APPLICATION_CREDENTIALS} ./temp_gcp_creds.json"
+                        
+                        // Build with credentials
+                        sh """
+                            # Build Docker image with credentials
+                            docker build \
+                              --build-arg GCP_KEY_JSON="\$(cat ./temp_gcp_creds.json)" \
+                              -t gcr.io/${GCP_PROJECT}/mlops-project:latest .
+                            
+                            # Clean up credential file
+                            rm -f ./temp_gcp_creds.json
+                            
+                            # Push to Google Container Registry
                             docker push gcr.io/${GCP_PROJECT}/mlops-project:latest
-                        '''
+                        """
                     }
                 }
             }
