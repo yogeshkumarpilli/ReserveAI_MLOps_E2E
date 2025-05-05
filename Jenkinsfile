@@ -127,7 +127,7 @@ set -e
 CREDS_FILE=$1
 PROJECT_ID=$2
 CONTAINER_NAME=${3:-ml-service}
-PORT=${PORT:-8000}
+PORT=${PORT:-8080}
 
 # Check inputs
 if [ -z "$CREDS_FILE" ] || [ -z "$PROJECT_ID" ]; then
@@ -152,7 +152,7 @@ cp "$CREDS_FILE" "$TEMP_CREDS"
 echo "Deploying container with mounted credentials..."
 docker run -d \\
   --name $CONTAINER_NAME \\
-  -p $PORT:8000 \\
+  -p $PORT:8080 \\
   -v "$TEMP_CREDS:/app/gcp-credentials.json:ro" \\
   "gcr.io/$PROJECT_ID/ml-project:latest"
 
