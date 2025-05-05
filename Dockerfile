@@ -52,7 +52,7 @@ RUN chmod +x /app/entrypoint.sh
 # -----------------------------------------------------------------------------
 # Container Configuration
 # -----------------------------------------------------------------------------
-
+EXPOSE 8080
 
 # Set entrypoint script
 CMD ["/app/entrypoint.sh"]
