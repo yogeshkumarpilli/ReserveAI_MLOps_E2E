@@ -33,7 +33,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN uv sync && uv build
 
 # Train the model before running the application
-RUN python pipeline/training_pipeline.py
+RUN python pipeline/training.py
 
 # Optional: Remove GCP credentials if present
 #ARG GCP_KEY_JSON
