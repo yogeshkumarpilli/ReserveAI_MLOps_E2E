@@ -36,15 +36,15 @@ RUN uv sync && uv build
 RUN python pipeline/training.py
 
 # Optional: Remove GCP credentials if present
-#ARG GCP_KEY_JSON
-#ENV GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-credentials.json
-#RUN if [ -n "$GCP_KEY_JSON" ]; then \
-      #  echo "$GCP_KEY_JSON" > /app/gcp-credentials.json && \
-      #  echo "✓ GCP credentials injected"; \
-    #fi
+ARG GCP_KEY_JSON
+ENV GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-credentials.json
+RUN if [ -n "$GCP_KEY_JSON" ]; then \
+        echo "$GCP_KEY_JSON" > /app/gcp-credentials.json && \
+        echo "✓ GCP credentials injected"; \
+    fi
 
 # Final cleanup (GCP creds)
-#RUN rm -f /app/gcp-credentials.json || true
+RUN rm -f /app/gcp-credentials.json || true
 
 # Expose FastAPI port
 EXPOSE 8000
