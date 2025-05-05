@@ -52,8 +52,7 @@ RUN chmod +x /app/entrypoint.sh
 # -----------------------------------------------------------------------------
 # Container Configuration
 # -----------------------------------------------------------------------------
-# Expose API port
-EXPOSE 8000
+
 
 # Set entrypoint script
 CMD ["/app/entrypoint.sh"]
