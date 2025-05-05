@@ -24,21 +24,24 @@ pipeline {
             }
         }
 
-        stage("Install Dependencies with UV") {
-            steps {
-                script {
-                    echo 'Installing dependencies using uv...'
+
+        stage("Setting up our Virtual Environment and Installing dependancies"){
+            steps{
+                script{
+                    echo 'Setting up our Virtual Environment and Installing dependancies............'
                     sh '''
-                        curl -LsSf https://astral.sh/uv/install.sh | sh
-                        ~/.local/bin/uv venv
-                        source .venv/bin/activate
-                        uv sync
-                        uv lock
-                        uv build
+                    curl -LsSf https://astral.sh/uv/install.sh | sh
+                    . $HOME/.local/bin/env
+                    uv venv
+                    . .venv/bin/activate
+                    uv sync
+                    uv lock
+                    uv build
                     '''
                 }
             }
         }
+        
 
         stage("Build & Push Docker Image to GCR") {
             steps {
