@@ -73,7 +73,7 @@ pipeline {
                     echo 'Running training pipeline...'
                     sh '''
                         . .venv/bin/activate
-                        uv run pipeline/training.py
+                        python pipeline/training.py
                     '''
                 }
             }
