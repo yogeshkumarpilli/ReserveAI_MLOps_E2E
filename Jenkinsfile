@@ -66,26 +66,5 @@ pipeline {
                 }
             }
         }
-
-        stage("Train Model") {
-            steps {
-                script {
-                    echo 'Running training pipeline...'
-                    sh '''
-                        . .venv/bin/activate
-                        python pipeline/training.py
-                    '''
-                }
-            }
-        }
-
-        stage("Cleanup Docker") {
-            steps {
-                script {
-                    echo 'Cleaning up Docker image (optional)...'
-                    sh 'docker rmi gcr.io/${GCP_PROJECT}/mlops-project:latest || true'
-                }
-            }
-        }
     }
 }

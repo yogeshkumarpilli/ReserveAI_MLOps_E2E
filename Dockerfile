@@ -32,6 +32,9 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 # Install dependencies and build
 RUN uv sync && uv build
 
+# Train the model before running the application
+RUN python pipeline/training_pipeline.py
+
 # Optional: Remove GCP credentials if present
 #ARG GCP_KEY_JSON
 #ENV GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-credentials.json
@@ -46,5 +49,5 @@ RUN uv sync && uv build
 # Expose FastAPI port
 EXPOSE 8000
 
-# Run the application (assumes uvicorn usage)
-CMD ["uvicorn","application:app", "--host", "0.0.0.0", "--port", "8000"]
+# Command to run the app
+CMD ["python", "application.py"]
