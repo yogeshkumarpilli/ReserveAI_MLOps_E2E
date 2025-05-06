@@ -18,7 +18,7 @@
 
 ## 🧠 About ReserveAI
 
-ReserveAI is a full-stack MLOps pipeline deployed on **Google Cloud Platform (GCP)**. It automates model training, testing, deployment, and monitoring for a room reservation prediction model. It utilizes **FastAPI** for serving the model, **Docker** for containerization, and **Jenkins (Docker-in-Docker)** for CI/CD automation.
+ReserveAI is a full-stack MLOps pipeline deployed on **Google Cloud Platform (GCP)**. It automates model training, testing, deployment, and monitoring for a room reservation prediction model. It utilizes **FastAPI** for serving the model with API documentation, **Docker** for containerization, and **Jenkins (Docker-in-Docker)** for CI/CD automation.
 
 ---
 
