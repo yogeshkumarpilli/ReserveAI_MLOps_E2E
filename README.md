@@ -198,7 +198,3 @@ GitHub: [@yogeshkumarpilli](https://github.com/yogeshkumarpilli)
 Email: pilliyogeshkumar@example.com
 
 ---
-
-## 📄 License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
