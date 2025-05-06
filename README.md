@@ -75,6 +75,11 @@ ReserveAI_MLOps_E2E/
 
 ---
 
+## 🗺️ Demo Preview
+
+![Preview](prediction.png)
+
+
 ## 🛠️ Tech Stack
 
 | Stage               | Tool/Service                  |
