@@ -108,6 +108,7 @@ cd ReserveAI_MLOps_E2E
 ```bash
 uv init
 source .venv/bin/activate  # For Linux/macOS
+.venv/Scripts/activate     # For Windows
 uv sync
 uv build
 ```
@@ -202,7 +203,3 @@ GitHub: [@yogeshkumarpilli](https://github.com/yogeshkumarpilli)
 Email: pilliyogeshkumar@example.com
 
 ---
-
-## 📄 License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
