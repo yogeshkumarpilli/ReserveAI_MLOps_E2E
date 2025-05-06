@@ -1,11 +1,11 @@
 # 🚀 ReserveAI: End-to-End MLOps Pipeline for Room Reservation Prediction
 
-![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
-![UV](https://img.shields.io/badge/uv-0.1.0-FFD43B?logo=pypi&logoColor=black)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.95-009688?logo=fastapi&logoColor=white)
+![Python 3.13+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![UV](https://img.shields.io/badge/uv-0.7.2-FFD43B?logo=pypi&logoColor=black)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115.12?logo=fastapi&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-24.0-2496ED?logo=docker&logoColor=white)
 ![GCP](https://img.shields.io/badge/Google_Cloud-Cloud_Run-4285F4?logo=googlecloud&logoColor=white)
-![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
+![CI/CD](https://img.shields.io/badge/CI%2FCD-Jenkins-2088FF?logo=Jenkins&logoColor=white)
 
 
 <div align="center">
@@ -61,10 +61,10 @@ ReserveAI_MLOps_E2E/
 └── README.md                 # Documentation
 
 
-## Project Architecture 
 
 
-## 🧠 Updated Architecture: GCP + Jenkins + Cloud Run
+
+🧠 Updated Architecture: GCP + Jenkins + Cloud Run
 🔹 1. Data Ingestion
 Training data is retrieved from Google Cloud Storage (GCS).
 
@@ -92,7 +92,7 @@ Image is deployed to Google Cloud Run.
 Exposes a public HTTP endpoint for model predictions.
 
 
-## ⚙️ Tools & Services
+⚙️ Tools & Services
 
 Stage	Tool/Service
 Data Storage	Google Cloud Storage (GCS)
@@ -103,7 +103,7 @@ Model Deployment	Google Cloud Run
 API Framework	Flask
 Language	Python
 
-## 🚀 Quickstart Guide
+🚀 Quickstart Guide
 
 1. Clone the Repository
 bash
@@ -186,7 +186,8 @@ gcloud run deploy reserveai-api \
 
 
 
-image.png
+
+[Prediction](prediction.png)
 
 
 
