@@ -2,7 +2,7 @@
 
 ![Python 3.13+](https://img.shields.io/badge/Python-3.13%2B-3776AB?logo=python&logoColor=white)
 ![UV](https://img.shields.io/badge/uv-0.7.2-FFD43B?logo=pypi&logoColor=black)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.115.12?logo=fastapi&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115.2-green)
 ![Docker](https://img.shields.io/badge/Docker-24.0-2496ED?logo=docker&logoColor=white)
 ![GCP](https://img.shields.io/badge/Google_Cloud-Cloud_Run-4285F4?logo=googlecloud&logoColor=white)
 ![CI/CD](https://img.shields.io/badge/CI%2FCD-Jenkins-2088FF?logo=Jenkins&logoColor=white)
