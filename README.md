@@ -1,5 +1,13 @@
 # 🚀 ReserveAI: End-to-End MLOps Pipeline for Room Reservation Prediction
 
+![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![UV](https://img.shields.io/badge/uv-0.1.0-FFD43B?logo=pypi&logoColor=black)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.95-009688?logo=fastapi&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-24.0-2496ED?logo=docker&logoColor=white)
+![GCP](https://img.shields.io/badge/Google_Cloud-Cloud_Run-4285F4?logo=googlecloud&logoColor=white)
+![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
+
+
 <div align="center">
   <a href="https://ml-project-167836923927.us-central1.run.app/">
     <img src="https://img.shields.io/badge/LIVE_DEMO-Available_now!-brightgreen?style=for-the-badge&logo=google-chrome" alt="Live Demo">
@@ -8,31 +16,16 @@
   <p>🚀 <strong>Production Environment:</strong> <a href="https://ml-project-167836923927.us-central1.run.app/">https://ml-project-167836923927.us-central1.run.app/</a></p>
 </div>
 
-## 🌟 Live Demo Features
-
-```mermaid
-graph LR
-    A[Live Demo] --> B[Interactive Prediction]
-    A --> C[API Documentation]
-    A --> D[Sample Requests]
-    A --> E[Performance Metrics]
 
 Access these endpoints directly:
 
-🖥️ Web Interface
+🖥️ [Web Interface](https://ml-project-167836923927.us-central1.run.app/)
 
-📚 Swagger UI
+📚 [Swagger UI](https://ml-project-167836923927.us-central1.run.app/docs)
 
-📝 ReDoc
+📝 [ReDoc](https://ml-project-167836923927.us-central1.run.app/redoc)
 
-📊 Metrics
 
-![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
-![UV](https://img.shields.io/badge/uv-0.1.0-FFD43B?logo=pypi&logoColor=black)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.95-009688?logo=fastapi&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-24.0-2496ED?logo=docker&logoColor=white)
-![GCP](https://img.shields.io/badge/Google_Cloud-Cloud_Run-4285F4?logo=googlecloud&logoColor=white)
-![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
 
 ReserveAI is a robust MLOps pipeline built with **Google Cloud Platform (GCP)** and a **custom Jenkins setup** that uses **Docker-in-Docker (DinD)** to build and deploy a machine learning model for predicting hotel room reservations.
 
