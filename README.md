@@ -16,7 +16,7 @@ graph LR
     A --> C[API Documentation]
     A --> D[Sample Requests]
     A --> E[Performance Metrics]
-    
+
 Access these endpoints directly:
 
 🖥️ Web Interface
@@ -50,6 +50,8 @@ ReserveAI is a robust MLOps pipeline built with **Google Cloud Platform (GCP)** 
 
 ## 📁 Project Structure
 
+![Architecture](architecture.png)
+
 ```bash
 ReserveAI_MLOps_E2E/
 │
@@ -64,6 +66,10 @@ ReserveAI_MLOps_E2E/
 ├── Jenkinsfile               # CI/CD stages for Jenkins
 ├── pyproject.toml            # Application dependencies
 └── README.md                 # Documentation
+
+
+## Project Architecture 
+
 
 ## 🧠 Updated Architecture: GCP + Jenkins + Cloud Run
 🔹 1. Data Ingestion
