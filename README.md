@@ -1,214 +1,203 @@
 # 🚀 ReserveAI: End-to-End MLOps Pipeline for Room Reservation Prediction
 
-![Python 3.13+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![Python 3.13+](https://img.shields.io/badge/Python-3.13%2B-3776AB?logo=python&logoColor=white)
 ![UV](https://img.shields.io/badge/uv-0.7.2-FFD43B?logo=pypi&logoColor=black)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.115.12?logo=fastapi&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-24.0-2496ED?logo=docker&logoColor=white)
 ![GCP](https://img.shields.io/badge/Google_Cloud-Cloud_Run-4285F4?logo=googlecloud&logoColor=white)
 ![CI/CD](https://img.shields.io/badge/CI%2FCD-Jenkins-2088FF?logo=Jenkins&logoColor=white)
 
-
 <div align="center">
   <a href="https://ml-project-167836923927.us-central1.run.app/">
     <img src="https://img.shields.io/badge/LIVE_DEMO-Available_now!-brightgreen?style=for-the-badge&logo=google-chrome" alt="Live Demo">
   </a>
-  
-  <p>🚀 <strong>Production Environment:</strong> <a href="https://ml-project-167836923927.us-central1.run.app/">https://ml-project-167836923927.us-central1.run.app/</a></p>
+  <p>🚀 <strong>Production Environment:</strong> <a href="https://ml-project-167836923927.us-central1.run.app/">Live Demo</a></p>
 </div>
 
+---
 
-Access these endpoints directly:
+## 🧠 About ReserveAI
 
-🖥️ [Web Interface](https://ml-project-167836923927.us-central1.run.app/)
-
-📚 [Swagger UI](https://ml-project-167836923927.us-central1.run.app/docs)
-
-📝 [ReDoc](https://ml-project-167836923927.us-central1.run.app/redoc)
-
-
-
-ReserveAI is a robust MLOps pipeline built with **Google Cloud Platform (GCP)** and a **custom Jenkins setup** that uses **Docker-in-Docker (DinD)** to build and deploy a machine learning model for predicting hotel room reservations.
+ReserveAI is a full-stack MLOps pipeline deployed on **Google Cloud Platform (GCP)**. It automates model training, testing, deployment, and monitoring for a room reservation prediction model. It utilizes **FastAPI** for serving the model, **Docker** for containerization, and **Jenkins (Docker-in-Docker)** for CI/CD automation.
 
 ---
 
-## 📦 Features
+## 📦 Key Features
 
-- ✅ End-to-End Machine Learning Lifecycle
-- ✅ Data pulled directly from Google Cloud Storage (GCS)
-- ✅ Custom Jenkins CI/CD with Docker-in-Docker (DinD)
-- ✅ Dockerized Flask API pushed to Google Container Registry (GCR)
-- ✅ Scalable serverless deployment using Cloud Run
+- ✅ End-to-end ML lifecycle orchestration
+- ✅ Data ingestion from Google Cloud Storage (GCS)
+- ✅ CI/CD pipeline using Jenkins with Docker-in-Docker setup
+- ✅ Model API built with FastAPI and containerized
+- ✅ Cloud deployment with Google Cloud Run
 
 ---
 
-## 📁 Project Structure
-
-![Architecture](architecture.png)
+## 🧱 Project Structure
 
 ```bash
 ReserveAI_MLOps_E2E/
 │
 ├── pipeline/                 # Jenkins + Docker CI/CD scripts
-├── config                    # Config file for configuration for model_params, paths
-├── custom_jenkins/           # Jenkins-in-Docker configuration
-├── src/                      # Model training and evaluation scripts
+├── config/                   # Configuration files
+├── custom_jenkins/           # Jenkins-in-Docker setup
+├── src/                      # Model training, preprocessing, and evaluation
 ├── notebook/                 # EDA and prototyping notebooks
-├── application.py            # Fast API serving predictions
-├── templates                 # UI templates for serving predictions
-├── Dockerfile                # Builds the Flask app image
-├── Jenkinsfile               # CI/CD stages for Jenkins
-├── pyproject.toml            # Application dependencies
-└── README.md                 # Documentation
+├── templates/                # Front-end UI templates
+├── application.py            # FastAPI app for inference
+├── Dockerfile                # Container build definition
+├── Jenkinsfile               # Jenkins CI/CD pipeline stages
+├── pyproject.toml            # Dependency management
+└── README.md
+```
 
+---
 
+## 🗺️ Architecture Overview
 
+![Architecture](architecture.png)
 
+### Workflow Summary:
 
-🧠 Updated Architecture: GCP + Jenkins + Cloud Run
-🔹 1. Data Ingestion
-Training data is retrieved from Google Cloud Storage (GCS).
+- **Data Ingestion**  
+  Load training data from Google Cloud Storage.
 
-🔹 2. Model Training
-Model is trained using Python, with output serialized (e.g., .pkl).
+- **Model Training**  
+  Train the ML model and serialize it for later use.
 
-🔹 3. Custom Jenkins Setup
-Jenkins runs inside Docker.
+- **CI/CD with Jenkins (DinD)**  
+  Automate testing, building, and pushing containers via Jenkins pipelines.
 
-Docker-in-Docker (DinD) is used to:
+- **Containerization with Docker**  
+  FastAPI inference service is built into a Docker image.
 
-Build the Docker image for the Flask API
+- **Deployment via Cloud Run**  
+  Final container image is deployed serverlessly using Cloud Run.
 
-Run all pipeline stages inside isolated containers
+---
 
-🔹 4. Docker Build
-Flask API is containerized using a Dockerfile.
+## 🛠️ Tech Stack
 
-🔹 5. Push to GCR
-Docker image is pushed to Google Container Registry (GCR).
+| Stage               | Tool/Service                  |
+|--------------------|-------------------------------|
+| Data Storage        | Google Cloud Storage (GCS)    |
+| CI/CD Orchestration| Jenkins (Docker-in-Docker)    |
+| API Framework       | FastAPI                       |
+| Containerization    | Docker                        |
+| Image Registry      | Google Container Registry     |
+| Deployment          | Google Cloud Run              |
+| Language            | Python                        |
 
-🔹 6. Deployment to Cloud Run
-Image is deployed to Google Cloud Run.
+---
 
-Exposes a public HTTP endpoint for model predictions.
+## 🚀 Quickstart Guide
 
+### 1. Clone the Repository
 
-⚙️ Tools & Services
-
-Stage	Tool/Service
-Data Storage	Google Cloud Storage (GCS)
-CI/CD Orchestration	Jenkins (Docker-in-Docker)
-Containerization	Docker
-Image Registry	Google Container Registry (GCR)
-Model Deployment	Google Cloud Run
-API Framework	Flask
-Language	Python
-
-🚀 Quickstart Guide
-
-1. Clone the Repository
-bash
-Copy
-Edit
+```bash
 git clone https://github.com/yogeshkumarpilli/ReserveAI_MLOps_E2E.git
 cd ReserveAI_MLOps_E2E
+```
 
+### 2. Set Up the Environment
 
-2. Set up Environment
-bash
-Copy
-Edit
+```bash
 uv init
-.venv/bin/activate
+source .venv/bin/activate  # For Linux/macOS
 uv sync
 uv build
+```
 
+---
 
-## 🧪 Model Training
-Ensure your GCP credentials are configured:
+## 📈 Model Training
 
-python
-Copy
-Edit
-from google.cloud import storage
-client = storage.Client()
-bucket = client.bucket('your-gcs-bucket')
+1. Authenticate with GCP:
+   ```python
+   from google.cloud import storage
+   client = storage.Client()
+   bucket = client.bucket('your-gcs-bucket-name')
+   ```
 
+2. Run the training script:
+   ```bash
+   python pipeline/training.py
+   ```
 
+3. The trained model will be serialized and stored.
 
+---
 
-# Download and load data
-Then run:
+## 🐳 CI/CD with Jenkins (DinD)
 
-bash
-Copy
-Edit
-python pipeline/training.py
+To automate the pipeline:
 
+1. Spin up Jenkins from `custom_jenkins/Dockerfile`.
+2. Mount Docker socket inside Jenkins container.
+3. The `Jenkinsfile` includes:
+   - Linting and testing
+   - Docker image build
+   - Push to GCR
+   - Cloud Run deployment
 
+---
 
+## 📦 Docker Build & GCR Push
 
-🐳 CI/CD with Jenkins (Docker-in-Docker)
-Spin up Jenkins using the custom_jenkins Dockerfile
-
-Ensure Docker socket is mounted for DinD
-
-Jenkinsfile automates:
-
-Linting and Testing
-
-Docker Image Build
-
-Push to GCR
-
-Deployment to Cloud Run
-
-📦 Build and Push to GCR
-bash
-Copy
-Edit
+```bash
 gcloud auth login
 gcloud config set project YOUR_PROJECT_ID
 
 docker build -t gcr.io/YOUR_PROJECT_ID/reserveai-api .
 docker push gcr.io/YOUR_PROJECT_ID/reserveai-api
+```
 
+---
 
-☁️ Deploy to Cloud Run
-bash
-Copy
-Edit
-gcloud run deploy reserveai-api \
-  --image gcr.io/YOUR_PROJECT_ID/reserveai-api \
-  --platform managed \
-  --region us-central1 \
-  --allow-unauthenticated
+## ☁️ Deploy to Google Cloud Run
 
+```bash
+gcloud run deploy reserveai-api   --image gcr.io/YOUR_PROJECT_ID/reserveai-api   --platform managed   --region us-central1   --allow-unauthenticated
+```
 
+---
 
+## 🧪 Testing Instructions
 
+Run unit tests with:
 
-[Prediction](prediction.png)
-
-
-
-
-
-
-
-
-
-🧪 Run Tests
-bash
-Copy
-Edit
+```bash
 pytest tests/
+```
 
+---
 
+## ⚙️ Environment Requirements
 
-📬 Contact
-Yogesh Kumar Pilli
-GitHub: @yogeshkumarpilli
+- Python 3.10+
+- FastAPI
+- uvicorn
+- scikit-learn
+- pandas
+- google-cloud-storage
+- Docker
+- Jenkins
+
+Install all dependencies:
+
+```bash
+uv sync
+```
+
+---
+
+## 📬 Contact
+
+**Yogesh Kumar Pilli**  
+GitHub: [@yogeshkumarpilli](https://github.com/yogeshkumarpilli)  
 Email: pilliyogeshkumar@example.com
 
-📄 License
-This project is licensed under the MIT License. See LICENSE for details.
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
