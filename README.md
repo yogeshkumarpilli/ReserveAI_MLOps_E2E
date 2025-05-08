@@ -200,6 +200,6 @@ uv sync
 
 **Yogesh Kumar Pilli**  
 GitHub: [@yogeshkumarpilli](https://github.com/yogeshkumarpilli)  
-Email: pilliyogeshkumar@example.com
+Email: pilliyogeshkumar@gmail.com
 
 ---
